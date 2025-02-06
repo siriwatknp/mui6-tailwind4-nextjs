@@ -91,6 +91,9 @@ function App() {
       light: true,
       dark: true,
     },
+    typography: {
+      fontFamily: "var(--font-geist-sans)",
+    },
   });
 
   return (
