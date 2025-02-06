@@ -1,4 +1,9 @@
-@import 'tailwindcss';
+/* `mui` comes from `enableCssLayer: true` */
+/* need to insert `mui` in between so that Tailwind utility classes can override Material UI components */
+@layer theme, base, mui, components, utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-background: var(--background);
