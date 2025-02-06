@@ -82,6 +82,39 @@ index 154635b..2dad18b 100644
        dark: true,
 ```
 
+### Prevent flicker
+
+Follow [preventing flicker for Next.js App Router](https://mui.com/material-ui/customization/css-theme-variables/configuration/#next-js-app-router):
+
+```diff
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index 799dd53..42a8f0f 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -1,6 +1,7 @@
+ import type { Metadata } from "next";
+ import { Geist, Geist_Mono } from "next/font/google";
+ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
++import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
+ import "./globals.css";
+
+ const geistSans = Geist({
+@@ -24,10 +25,11 @@ export default function RootLayout({
+   children: React.ReactNode;
+ }>) {
+   return (
+-    <html lang="en">
++    <html lang="en" suppressHydrationWarning>
+       <body
+         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+       >
++        <InitColorSchemeScript attribute="class" />
+         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+           {children}
+         </AppRouterCacheProvider>
+
+```
+
 ## Tailwind Intellisense
 
 To enable autocompletion when using `className: "..."`, open the VS Code `settings.json` and add this
